@@ -84,3 +84,13 @@ void pararMotor() {
   );
 }
 
+BITÁCORA 
+08 de Enero del 2025
+comenzamos desarmando un carrito control remoto para poder utilizar el chasis de la parte trasera.
+
+10 de Marzo del 2025
+imprimimos en la impresora 3D las piezas, la de arriba y la de abajo que sostiene la batería y las placas.
+
+
+
+
