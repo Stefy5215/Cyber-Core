@@ -84,32 +84,39 @@ void pararMotor() {
   );
 }
 
-BITÁCORA 
-08 de Enero del 2025
-El día de hoy comenzamos desarmando un carrito control remoto para poder utilizar el chasis de la parte trasera.
 
+
+Bitácora del Proyecto
+
+08 de Enero del 2025
+Comenzamos desarmando un carrito de control remoto para aprovechar el chasis de la parte trasera. También definimos los componentes que necesitaremos para el proyecto. Además, iniciamos la programación base para el control del vehículo, estableciendo la estructura del código en Python para la Raspberry Pi.
+
+22 de Enero del 2025
+Realizamos avances en la programación, implementando las primeras funciones para el movimiento del motor y la gestión de energía. También definimos el modelo de control remoto que se integrará.
 
 10 de Marzo del 2025
-Hoy imprimimos en la impresora 3D las piezas, la de arriba y la de abajo que sostiene la batería y las placas.
+Hoy imprimimos en la impresora 3D las piezas principales: la base superior y la base inferior que sostendrán la batería y las placas electrónicas. Probamos el ensamblaje de estas piezas para asegurarnos de que encajaran correctamente en el chasis.
 
+15 de Abril del 2025
+Verificamos la estabilidad del chasis y realizamos ajustes en el diseño de las piezas impresas para mejorar la distribución del peso. También continuamos avanzando en la lógica de control y comenzamos con la planificación de la integración de la cámara.
 
 28 de Mayo del 2025
-El día de hoy pedimos el tren delantero y la Raspberry en la tienda electrónica.
-
+El día de hoy pedimos el tren delantero y la placa Raspberry en la tienda electrónica. También investigamos los controladores necesarios para los motores y el sistema de visión.
 
 20 de Junio del 2025
-El día de hoy nos llegó el tren delantero y comenzamos a implementarlo.
-
+Nos llegó el tren delantero y comenzamos a implementarlo en el chasis. Ajustamos las piezas impresas para que encajaran correctamente con el nuevo sistema.
 
 10 de Julio del 2025
-Hoy nos llegó la placa Raspberry, también implementamos una cámara para la detección de obstáculos.
+Hoy recibimos la placa Raspberry Pi e iniciamos la configuración del sistema operativo y la instalación de librerías necesarias. Además, implementamos una cámara para la detección de obstáculos, que será fundamental para la navegación autónoma.
 
+25 de Julio del 2025
+Finalizamos la integración física de todos los componentes: chasis, tren delantero, placa, batería y cámara. Hicimos pruebas básicas para verificar que la alimentación y las conexiones funcionaran sin problemas.
 
 11 - 25 de Agosto del 2025
-comenzamos con las pruebas de funcionamiento 
+Comenzamos con las pruebas de funcionamiento del prototipo, evaluando el control manual y la respuesta del sistema ante obstáculos. Ajustamos parámetros en el código para mejorar la estabilidad y la precisión de los movimientos.
 
-
-
+26 de Agosto del 2025
+Realizamos pruebas con el sistema de detección de obstáculos en diferentes escenarios. También optimizamos el código para reducir la latencia entre la cámara y la ejecución de los movimientos.
 
 
 
