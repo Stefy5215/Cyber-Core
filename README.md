@@ -86,10 +86,32 @@ void pararMotor() {
 
 BITÁCORA 
 08 de Enero del 2025
-comenzamos desarmando un carrito control remoto para poder utilizar el chasis de la parte trasera.
+El día de hoy comenzamos desarmando un carrito control remoto para poder utilizar el chasis de la parte trasera.
+
 
 10 de Marzo del 2025
-imprimimos en la impresora 3D las piezas, la de arriba y la de abajo que sostiene la batería y las placas.
+Hoy imprimimos en la impresora 3D las piezas, la de arriba y la de abajo que sostiene la batería y las placas.
+
+
+28 de Mayo del 2025
+El día de hoy pedimos el tren delantero y la Raspberry en la tienda electrónica.
+
+
+20 de Junio del 2025
+El día de hoy nos llegó el tren delantero y comenzamos a implementarlo.
+
+
+10 de Julio del 2025
+Hoy nos llegó la placa Raspberry, también implementamos una cámara para la detección de obstáculos.
+
+
+11 - 25 de Agosto del 2025
+comenzamos con las pruebas de funcionamiento 
+
+
+
+
+
 
 
 
