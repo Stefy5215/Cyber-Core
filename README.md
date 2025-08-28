@@ -118,6 +118,10 @@ Comenzamos con las pruebas de funcionamiento del prototipo, evaluando el control
 26 de Agosto del 2025
 Realizamos pruebas con el sistema de detección de obstáculos en diferentes escenarios. También optimizamos el código para reducir la latencia entre la cámara y la ejecución de los movimientos.
 
+27 de Agosto del 2025
+Hoy realizamos pruebas de la detección de obstáculos del cubo rojo, tuvimos que especificar y aclarar muy bien los colores, dado que el carrito confundía un color con otro.
+
+
 
 
 
