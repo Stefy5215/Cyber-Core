@@ -4,12 +4,13 @@ desarrollamos el robot para la competencia de la WRO FUTUROS INGENIEROS. Aquí g
 experiencia y los retos que vivimos como equipo.
 
 Integrantes:
--
-Eleazar Abisai Pacheco Oliva 
-Stefany Andrea Tobar de Paz 
-Sergio Andrés Carrera Canel 
+
+*Eleazar Abisai Pacheco Oliva 
+*Stefany Andrea Tobar de Paz 
+*Sergio Andrés Carrera Canel 
 
 Misión
+-
 Nuestra misión es demostrar que la tecnología no es solo algo complicado que usan las grandes empresas, sino una herramienta que nosotros, 
 como estudiantes, también podemos crear y aprovechar para resolver problemas reales. Queremos que nuestro proyecto muestre que con 
 creatividad, dedicación y trabajo en equipo es posible transformar ideas en algo útil y funcional. No buscamos únicamente construir un 
@@ -17,6 +18,7 @@ robot, sino aprender en el proceso, inspirar a otros jóvenes a interesarse por 
 está al alcance de todos si se combina disciplina con pasión.
 
 Visión
+-
 Nuestra visión es llegar a un punto donde proyectos como el nuestro no se queden únicamente en una maqueta escolar, sino que puedan 
 evolucionar hasta convertirse en soluciones que impacten positivamente en la vida diaria de las personas. Nos imaginamos un futuro donde 
 los jóvenes tengamos más espacios para experimentar y compartir nuestras ideas, sin miedo a equivocarnos, porque de los errores también 
