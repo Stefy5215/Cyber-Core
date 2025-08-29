@@ -37,7 +37,7 @@ llevar a cabo el diseño, la construcción y el funcionamiento del robot autóno
 dentro del sistema, aportando desde la parte estructural hasta la lógica de control y la interacción con el entorno.
 
 Componentes básicos:
-
+-
 * Raspberry Pi 5 → cerebro principal del robot.
 * Arduino UNO (Elegoo Shield) → controla motores y sensores.
 * Motor DC de 12V → mueve las llantas traseras y proporciona tracción.
@@ -52,7 +52,8 @@ Más allá de los componentes, lo realmente importante fue cómo los integramos.
 seguridad eléctrica, cada línea de código escrita para optimizar el rendimiento. Fue un proceso de prueba y error, pero también de 
 descubrimiento y mejora continua.
 
-Bitácora del Proyecto
+Bitácora del Proyecto:
+-
 08 de Enero del 2025
 
 Comenzamos desarmando un carrito de control remoto para aprovechar el chasis de la parte trasera. También definimos los componentes que 
@@ -122,8 +123,8 @@ Hicimos pruebas más avanzadas con la detección de obstáculos verdes. Nos dimo
 los brillos, por lo que añadimos un ajuste en el balance de blancos y filtros de suavizado de imagen. Con estas mejoras, el robot empezó 
 a reconocer con más confianza los objetos.
 
-Retos, aprendizajes y crecimiento
-
+Retos, aprendizajes y crecimiento:
+-
 Uno de los mayores retos fue la integración entre hardware y software. No bastaba con que la programación estuviera bien estructurada, 
 también era necesario que las conexiones eléctricas fueran correctas y que la distribución física de los componentes no afectara el 
 rendimiento.
@@ -135,7 +136,8 @@ oportunidad para investigar más, probar nuevas soluciones y reforzar nuestra co
 Este proyecto no solo nos dio habilidades técnicas, sino también valores como la perseverancia, la organización y la confianza en que con 
 esfuerzo se pueden lograr grandes cosas.
 
-Impacto y proyecciones futuras
+Impacto y proyecciones futuras:
+-
 
 Aunque hoy nuestro robot es un prototipo, vemos en él un reflejo de lo que podría convertirse en un futuro: un sistema autónomo capaz de 
 adaptarse a entornos más complejos, de colaborar en tareas de logística, seguridad o incluso apoyo en emergencias.
