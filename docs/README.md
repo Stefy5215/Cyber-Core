@@ -5,9 +5,9 @@ experiencia y los retos que vivimos como equipo.
 
 Integrantes:
 
-*Eleazar Abisai Pacheco Oliva 
-*Stefany Andrea Tobar de Paz 
-*Sergio Andrés Carrera Canel 
+* Eleazar Abisaí Pacheco Oliva 
+* Stefany Andrea Tobar de Paz 
+* Sergio Andrés Carrera Canel
 
 Misión
 -
@@ -25,6 +25,11 @@ los jóvenes tengamos más espacios para experimentar y compartir nuestras ideas
 nacen avances importantes. Queremos que lo que hoy empieza como un reto académico, en el futuro inspire a más generaciones a atreverse a 
 pensar distinto y a usar la tecnología como una aliada para construir un mundo más eficiente, justo y sostenible.
 
+En el desarrollo de nuestro proyecto de robótica, fue fundamental contar con un conjunto de herramientas y dispositivos que permitieran 
+llevar a cabo el diseño, la construcción y el funcionamiento del robot autónomo. Cada elemento utilizado cumple un papel específico dentro 
+del sistema, aportando desde la parte estructural hasta la lógica de control y la interacción con el entorno. Para comprender mejor cómo 
+se integran en el proyecto, a continuación se detallan los principales componentes empleados:
+
 COMPONENTES BÁSICOS 
 * Raspberry
 * Arduino UNO
@@ -33,6 +38,11 @@ COMPONENTES BÁSICOS
 * Motor DC
 * Estructura de carrito
 
+El desarrollo de un proyecto tecnológico no solo implica diseñar y ensamblar un sistema, sino también llevar un registro ordenado de cada 
+etapa que permita comprender el proceso, evaluar los avances y detectar áreas de mejora. Esta documentación se convierte en una 
+herramienta clave para evidenciar el esfuerzo, la organización y el aprendizaje adquirido en el camino. Con esta finalidad, se ha 
+preparado un seguimiento detallado de nuestro trabajo, en el cual se reflejan las ideas iniciales, las decisiones tomadas y los resultados 
+obtenidos durante la construcción del robot autónomo.
 
 Bitácora del Proyecto
 
