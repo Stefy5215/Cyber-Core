@@ -50,3 +50,24 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
 
 
 #RETO
+
+El reto de la competencia WRO Futuros Ingenieros busca que los estudiantes desarrollen habilidades de diseño, innovacion y trabajo en equipo a través de la construccion y programacion de vehículos autónomos. Este desafío no solo pone a prueba la creatividad y la precision, sino también la capacidad de resolver problemas reales aplicando la ingenieria y la tecnología. Más que una competencia, representa una oportunidad para crecer, compartir conocimientos y acercarnos al mundo de la ingeniería del futuro.
+
+- Detectar y evitar obstáculos
+- Seguir el camino de las pistas de manera autónoma
+- Reconocer señales o marcas de la pista
+- Adaptarse a cambios en el recorrido
+- Mantener estabilidad y precisión en todo momento
+- Completar el recorrido en el menor tiempo posible
+
+
+
+
+(foto frontal)                                    (foto atras)                                             (foto abajo)
+
+
+
+
+
+(foto arriba)
+                                               (foto izquierda)                                                           (foto derecha)
