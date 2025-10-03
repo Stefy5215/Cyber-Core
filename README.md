@@ -12,4 +12,3 @@ In addition to software development, the robot’s structural design was optimiz
 This project reflects a combination of advanced programming, machine learning, and robotic control, developed collaboratively and empathetically by our team, always valuing teamwork, creativity, and shared learning.
 
 
-[Ir a Lista de componentes](hardware/esquema_componentes.md#lista-de-componentes)
