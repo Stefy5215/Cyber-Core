@@ -1,14 +1,30 @@
 # Cyber-Core
-WRO FUTURE ENGINEERS 2025
 
-This project was developed for the WRO Future Engineers 2025 competition, aiming to design an autonomous robot capable of detecting and avoiding obstacles based on their color by applying computer vision and artificial intelligence techniques.
+Este repositorio contiene la documentación para la participación de Cyber-Core para la competencia de la categoria WRO Futuros Ingenieros 
+2025. Nuestro vehículo está diseñado por un equipo guatemalteco apasionado por la robótica.
 
-The robot uses cameras to capture visual information from its surroundings, which is then processed through neural networks trained to identify specific colors associated with different types of obstacles. Depending on the detected color, the robot decides in real time which evasive maneuver to execute.
 
-The software has been developed in Python, utilizing specialized libraries for image processing, model training, and autonomous motion control.
+INDICE DE README.md
+[Equipo](equipo.jpg)
+[Reto](reto.jpg)
+[descripcion del vehículo](descripciondelvechículo.ipg)
 
-In addition to software development, the robot’s structural design was optimized to ensure stability, quick response, and precision in turns. Automatic calibration routines were also implemented to adjust detection parameters based on lighting conditions, improving the robot’s robustness in variable environments.
 
-This project reflects a combination of advanced programming, machine learning, and robotic control, developed collaboratively and empathetically by our team, always valuing teamwork, creativity, and shared learning.
+
+
+
+
+
+
+
+
+
+Somos un equipo pequeño, pero con un corazón enorme. Solo somos dos, pero juntos formamos una fuerza imparable impulsada por la pasión 
+por la robótica y el deseo de superarnos. Cada paso que damos, cada error que corregimos y cada avance que logramos es el resultado de 
+trabajo duro, largas horas y una confianza inquebrantable entre nosotros. No tenemos un gran número, pero tenemos algo más poderoso: la 
+determinación de nunca rendirnos y la certeza de que, con creatividad y trabajo en equipo, podemos lograr cosas increíbles. Porque no se 
+trata de cuántos somos… se trata de cuánto creemos en lo que hacemos.
+
+
 
 
