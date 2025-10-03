@@ -1,22 +1,22 @@
 # Cyber-Core
 
-Este repositorio contiene la documentación para la participación de Cyber-Core para la competencia de la categoria WRO Futuros 
-Ingenieros 2025. Nuestro vehículo está diseñado por un equipo guatemalteco apasionado por la robótica.
+Este repositorio contiene la documentación para la participación de Cyber-Core para la 
+competencia de la categoria WRO Futuros Ingenieros 2025. Nuestro vehículo está 
+diseñado por un equipo guatemalteco apasionado por la robótica.
 
 
 INDICE DE README.md
 [Equipo](#equipo)
-
-...
-
-
-
+[Reto](#reto)
+[explicación del proyecto](explicacióndelproyecto)
+[descripcion de componentes](descripciondecomponentes)
 
 
 
 
 
-EQUIPO
+
+#EQUIPO
 
 
 (foto)
@@ -31,29 +31,29 @@ más poderoso:la determinación de nunca rendirnos y la certeza de que, con crea
 increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos en lo que hacemos.
 
 
-ELEAZAR ABISAI PACHECO OLIVA
+                          ELEAZAR ABISAI PACHECO OLIVA
  EDAD: 17 AÑOS
- ENCARGADO DE:
-
-
- (BREVE DESCRIPCION DE EL )
-
-
-
-
-
-
- STEFANY ANDREA TOBAR DE PAZ
-   EDAD: 15 AÑOS
-   ENCARGADA DE: Diseño y electrónica
-
-   Soy estudiante del Colegio Villa Real Atlántico 1 y formo parte del grado de tercero básico.
-   Mi pasión por la robótica comenzó en el 2024 en la categoria Futuros innovadores, ganando experiencia en ese año quise subir un 
-   nivel de dificultad un poco mas grande, futuros ignenieros.
-   
+ ENCARGADO DE: Programación y logistica de componentes
+ 
+ Soy estudiante del Colegio Villa Real Atlántico 1 y formo parte del grado de quinto 
+ Bachillerato. Para mi, la robótica representa un camino de aprendizaje y superación, 
+ donde cada proyecto me ha permitido desarrollar liderazgo, creatividad y confianza en 
+ en sus capacidades, siempre trabajando en equipo para alcanzar nuevas metas.
 
 
 
+                           STEFANY ANDREA TOBAR DE PAZ
+ 
+ EDAD: 15 AÑOS
+ ENCARGADA DE: Diseño y electrónica
+
+  soy estudiante del Colegio Villa Real Atlántico 1 y formo parte del grado de tercero 
+  básico sección B. para mi, la robótica es más que una materia: es un espacio donde 
+  puedo expresar mi creatividad, aprender de los errores y crecer junto a mi equipo. A 
+  través de ella he descubierto que cada reto es una oportunidad para mejorar y que 
+  condedicacion es posible convertir las ideas en logros.
 
 
 
+
+#RETO
