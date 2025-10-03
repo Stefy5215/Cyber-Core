@@ -9,10 +9,7 @@ INDICE DE README.md
 
 ...
 
-## Equipo
-Aquí va la descripción de tu equipo.
--[Reto](reto.jpg)
--[descripcion del vehículo](descripciondelvechículo.ipg)
+
 
 
 
