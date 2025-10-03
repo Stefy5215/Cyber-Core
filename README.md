@@ -5,13 +5,6 @@ competencia de la categoria WRO Futuros Ingenieros 2025. Nuestro vehículo está
 diseñado por un equipo guatemalteco apasionado por la robótica.
 
 
-INDICE DE README.md
-[Equipo](#equipo)
-[Reto](#reto)
-[explicación del proyecto](explicacióndelproyecto)
-[descripcion de componentes](descripciondecomponentes)
-
-
 
 
 
