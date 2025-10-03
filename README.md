@@ -5,7 +5,12 @@ Ingenieros 2025. Nuestro vehículo está diseñado por un equipo guatemalteco ap
 
 
 INDICE DE README.md
+[Equipo](#equipo)
+
+...
+
 ## Equipo
+Aquí va la descripción de tu equipo.
 -[Reto](reto.jpg)
 -[descripcion del vehículo](descripciondelvechículo.ipg)
 
