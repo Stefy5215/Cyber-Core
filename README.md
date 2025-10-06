@@ -47,6 +47,20 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
   condedicacion es posible convertir las ideas en logros.
 
 
+MISIÓN 
+
+Nuestra misión es diseñar, construir y programar un vehículo autónomo capaz de enfrentar los retos de movilidad planteados en la competencia, aplicando principios de ingeniería, creatividad e innovación tecnológica. Buscamos desarrollar soluciones seguras, eficientes y sostenibles que reflejen nuestro aprendizaje y espíritu de trabajo en equipo.
+
+VISIÓN 
+
+Ser un equipo referente en innovación robótica, demostrando que la unión de la creatividad, la disciplina y el aprendizaje puede generar soluciones tecnológicas capaces de transformar la movilidad del futuro y abrir camino a nuevas generaciones.
+
+
+
+
+
+
+
 
 
 #RETO
