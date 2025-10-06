@@ -58,16 +58,9 @@ El reto de la competencia WRO Futuros Ingenieros busca que los estudiantes desar
 - Reconocer señales o marcas de la pista
 - Adaptarse a cambios en el recorrido
 - Mantener estabilidad y precisión en todo momento
-- Completar el recorrido en el menor tiempo posible
+- Completar el recorrido en el menor tiempo posible                                
 
 
 
 
-(foto frontal)                                    (foto atras)                                             (foto abajo)
-
-
-
-
-
-(foto arriba)
-                                               (foto izquierda)                                                           (foto derecha)
+                                           
