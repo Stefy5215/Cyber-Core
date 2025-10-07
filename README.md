@@ -142,6 +142,3 @@ Esta lógica permite que el carrito navegue de forma segura, reconociendo su ent
 En la tercera y última fase, el carrito debe completar su recorrido realizando una maniobra de estacionamiento autónomo dentro de una zona 
 específica delimitada por tablas de color rosado.            
 
-| atras | derecho | arriba |
-|----------|----------|----------|
-<img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore%201.jpg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore%202.jpg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore3.jpg?raw=true" width="250">
