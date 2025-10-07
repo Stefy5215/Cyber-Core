@@ -16,7 +16,6 @@ diseñado por un equipo guatemalteco apasionado por la robótica.
 
 
 
-
 Somos un equipo pequeño, pero con un corazón enorme. Solo somos dos, pero juntos formamos una fuerza imparable impulsada desde la 
 pasión por la robótica y el deseo de superarnos. Cada paso que damos, cada error que corregimos y cada avance que logramos es el 
 resultado de trabajo duro, largas horas y una confianza inquebrantable entre nosotros. No tenemos un gran número, pero tenemos algo 
