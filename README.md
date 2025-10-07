@@ -121,30 +121,31 @@ Nuestro carrito ha sido desarrollado para operar de manera completamente autóno
 funcionamiento se basa en el uso de una cámara y redes neuronales, lo que le permite tomar decisiones inteligentes en tiempo real, dependiendo del 
 entorno que percibe a través de la visión artificial.
 
-- Fase 1 – Navegación por Colores (Líneas Azul y Naranja)
-Durante la primera fase del recorrido, el carrito utiliza el procesamiento de imágenes captadas por la cámara frontal para identificar líneas de 
-colores que indican el camino a seguir. El algoritmo, entrenado mediante una red neuronal, analiza el orden en el que aparecen las líneas naranja y 
-azul sobre la pista:
+- Etapa 1 – Guiado por Colores ( Azul y Naranja)
+En la primera etapa del recorrido, el vehículo autónomo utiliza la cámara frontal para captar imágenes del entorno y reconocer las líneas de color que marcan
+el trayecto. Un modelo de inteligencia artificial, basado en redes neuronales, analiza la secuencia en que aparecen las franjas azul y naranja sobre la 
+superficie
 
-- Si se detecta primero la línea naranja, el carrito interpreta que debe girar hacia la derecha.
+- Cuando la primera línea identificada es naranja, el sistema interpreta que debe girar hacia la derecha.
+- Si la azul es detectada antes, el vehículo toma un giro hacia la izquierda.
 
-- Si se detecta primero la línea azul, ejecuta un giro hacia la izquierda.
+Este comportamiento surge del entrenamiento previo del modelo, el cual fue alimentado con numerosos ejemplos de colores, trayectorias y acciones 
+correspondientes, logrando así una conducción flexible y exacta.
 
-Este comportamiento es posible gracias al entrenamiento previo del modelo de inteligencia artificial, que fue alimentado con múltiples ejemplos de 
-trayectorias, colores y decisiones asociadas, permitiendo así una navegación adaptativa y precisa.
 
-- Fase 2 – Detección y Evasión de Obstáculos (Cubos Rojos y Verdes)
-En la segunda fase, el carrito se enfrenta a obstáculos representados por cubos de color rojo y verde. Mediante visión por computadora, el sistema
-identifica el color del cubo y decide la maniobra adecuada:
+- Etapa 2 – Reconocimiento y Esquiva de Obstáculos (Cubos Rojos y Verdes)
+En la segunda fase, el sistema se enfrenta a obstáculos representados por cubos de color rojo o verde. A través de técnicas de visión artificial, el carrito
+identifica el color del objeto y decide la maniobra de evasión apropiada:
 
-- Si detecta un cubo rojo, gira hacia la derecha para evitarlo.
+ - Si el obstáculo es rojo, el vehículo desvía hacia la derecha.
+- si el obstáculo es verde, gira hacia la izquierda para esquivarlo.
 
-- Si detecta un cubo verde, realiza la evasión por la izquierda.
+Gracias al uso de redes neuronales y a la segmentación de color, el modelo logra una detección precisa y una respuesta en tiempo real, lo que permite una 
+navegación más segura y confiable.
 
-Esta lógica permite que el carrito navegue de forma segura, reconociendo su entorno y tomando decisiones en tiempo real. El uso de redes neuronales 
- y segmentación por color mejora la precisión en la clasificación de objetos.
 
-- Fase 3 – Estacionamiento Autónomo (Zona con Tablas Rosadas)
-En la tercera y última fase, el carrito debe completar su recorrido realizando una maniobra de estacionamiento autónomo dentro de una zona 
-específica delimitada por tablas de color rosado.            
-
+- Etapa 3 – Aparcamiento Autónomo (Área con Tablas Rosadas)
+La tercera etapa concluye con una maniobra de estacionamiento automático, donde el vehículo debe ubicarse correctamente dentro de una zona designada y
+delimitada por tablas de color rosado.
+En esta fase, el sistema combina visión por computadora y control de movimiento para lograr un posicionamiento exacto, completando con éxito el recorrido de
+manera totalmente autónoma.
