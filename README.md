@@ -149,3 +149,6 @@ La tercera etapa concluye con una maniobra de estacionamiento automático, donde
 delimitada por tablas de color rosado.
 En esta fase, el sistema combina visión por computadora y control de movimiento para lograr un posicionamiento exacto, completando con éxito el recorrido de
 manera totalmente autónoma.
+
+
+ENSAMBLAJE DEL CARRITO
