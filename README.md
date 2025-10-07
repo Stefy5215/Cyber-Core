@@ -24,8 +24,8 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
 
 
                           ELEAZAR ABISAI PACHECO OLIVA
- -EDAD: 17 AÑOS.
- -ENCARGADO DE: Programación y logistica de componentes.
+ - EDAD: 17 AÑOS.
+ - ENCARGADO DE: Programación y logistica de componentes.
  
  Soy estudiante del Colegio Villa Real Atlántico 1 y formo parte del grado de quinto 
  Bachillerato. Para mi, la robótica representa un camino de aprendizaje y superación, 
@@ -36,8 +36,8 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
 
                            STEFANY ANDREA TOBAR DE PAZ
  
- -EDAD: 15 AÑOS.
- -ENCARGADA DE: Diseño y electrónica.
+ - EDAD: 15 AÑOS.
+ - ENCARGADA DE: Diseño y electrónica.
 
   soy estudiante del Colegio Villa Real Atlántico 1 y formo parte del grado de tercero 
   básico sección B. para mi, la robótica es más que una materia: es un espacio donde 
@@ -50,7 +50,7 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
   
 
 
--MISIÓN
+- MISIÓN
 
 Nuestra misión es diseñar, construir y programar un vehículo autónomo que sea capaz de enfrentar con éxito los diversos retos de movilidad 
 planteados en la competencia. Para lograrlo, integramos principios fundamentales de la ingeniería, la creatividad, el pensamiento crítico y la 
@@ -69,7 +69,7 @@ inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visió
 
 
 
--VISIÓN
+- VISIÓN
 
 Nuestra visión es convertirnos en un equipo líder y referente en el ámbito de la robótica e innovación tecnológica, reconocidos por nuestra 
 capacidad para transformar ideas en soluciones concretas que contribuyan a mejorar la movilidad del futuro. Aspiramos a ser un ejemplo de cómo la 
@@ -90,7 +90,7 @@ bienestar colectivo.
 
 
 
--RETO
+- RETO
 
 El reto de la competencia WRO Futuros Ingenieros busca que los estudiantes desarrollen habilidades de diseño, innovacion y trabajo en equipo através
 de la construccion y programacion de vehículos autónomos. Este desafío no solo pone a prueba la creatividad y la precision, sino también lacapacidad 
@@ -109,13 +109,13 @@ conocimientos y acercarnos al mundo de la ingeniería del futuro.
 
 
 
--RESUMEN DEL CARRITO
+- RESUMEN DEL CARRITO
 
 Nuestro carrito ha sido desarrollado para operar de manera completamente autónoma, sin intervención humana directa durante su desplazamiento. Su
 funcionamiento se basa en el uso de una cámara y redes neuronales, lo que le permite tomar decisiones inteligentes en tiempo real, dependiendo del 
 entorno que percibe a través de la visión artificial.
 
--Fase 1 – Navegación por Colores (Líneas Azul y Naranja)
+- Fase 1 – Navegación por Colores (Líneas Azul y Naranja)
 Durante la primera fase del recorrido, el carrito utiliza el procesamiento de imágenes captadas por la cámara frontal para identificar líneas de 
 colores que indican el camino a seguir. El algoritmo, entrenado mediante una red neuronal, analiza el orden en el que aparecen las líneas naranja y 
 azul sobre la pista:
@@ -138,10 +138,10 @@ identifica el color del cubo y decide la maniobra adecuada:
 Esta lógica permite que el carrito navegue de forma segura, reconociendo su entorno y tomando decisiones en tiempo real. El uso de redes neuronales 
  y segmentación por color mejora la precisión en la clasificación de objetos.
 
--Fase 3 – Estacionamiento Autónomo (Zona con Tablas Rosadas)
+- Fase 3 – Estacionamiento Autónomo (Zona con Tablas Rosadas)
 En la tercera y última fase, el carrito debe completar su recorrido realizando una maniobra de estacionamiento autónomo dentro de una zona 
 específica delimitada por tablas de color rosado.            
 
-| Imagen 1 | Imagen 2 | Imagen 3 |
+| atras | derecho | arriba |
 |----------|----------|----------|
 <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore%201.jpg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore%202.jpg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/cybercore3.jpg?raw=true" width="250">
