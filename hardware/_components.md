@@ -1,16 +1,19 @@
 # Hardware Components / Componentes de Hardware
 
-[Hardware]
-  ├── Arduino Mega
-  ├── SmartCar Shield V1.1
-  ├── MD-XL4016E Regulador Digital
-  ├── Servomotor
-  ├── Giro delantero prefabricado
-  ├── Raspberry Pi 5
-  ├── Tren trasero con motor 9V
-  ├── 2 Baterías Elegoo 7.2V
-  ├── 4 Baterías 18650
-  ├── 2 Cajas portadoras de baterías
-  ├── Cable Arduino
-  ├── Switch 20V / 10A
-  └── Impresiones 3D
+[Hardware]──┬── Arduino Mega ──┬── Cable Arduino
+             │
+             ├── SmartCar Shield V1.1 ──┬── Servomotor ──┬── Giro delantero prefabricado
+             │                           └── Tren trasero (motor 9V)
+             │
+             ├── MD-XL4016E Regulador Digital ──┬── Entrada: Baterías Elegoo 7.2V / 18650
+             │                                   └── Salida: Alimentación estable
+             │
+             ├── Raspberry Pi 5 ──┬── Comunicación con Arduino
+             │                     └── Control y procesamiento
+             │
+             ├── Baterías ──┬── 2× Elegoo 7.2V ──┬── 2× Cajas portadoras
+             │               └── 4× 18650
+             │
+             ├── Switch 20V / 10A ──┬── Control principal de encendido
+             │
+             └── Impresiones 3D ──┬── Soportes └── Estructura del vehículo
