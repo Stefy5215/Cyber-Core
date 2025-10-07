@@ -145,21 +145,15 @@ específica delimitada por tablas de color rosado.
 
 | Front | Back |
 |-------|------|
-<img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-front.jpeg?raw=true" width="250"> | <img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-back.jpeg?raw=true" width="250">
+<img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-front.jpeg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-back.jpeg?raw=true" width="250">
 
 | Left | Right |
 |------|-------|
-<img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-left.jpeg?raw=true" width="250"> | <img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-right.jpeg?raw=true" width="250">
+<img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-left.jpeg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-right.jpeg?raw=true" width="250">
 
 | Top | Bottom |
 |------|--------|
-<img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-top.jpeg?raw=true" width="250"> | <img src="https://github.com/chaBotsMX/chaBots-NERV-WRO-Future-Engineers-2025/blob/docs-nacional/v-photos/national/v-bottom.jpeg?raw=true" width="250">
-
-
-
-
-
-
+<img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-top.jpeg?raw=true" width="250"> | <img src="https://github.com/Stefy5215/cyber-core/blob/main/images/v-bottom.jpeg?raw=true" width="250">
 
 
                                            
