@@ -152,3 +152,15 @@ manera totalmente autónoma.
 
 
 ENSAMBLAJE DEL CARRITO
+
+
+En la primera fase del ensamblaje se fabricaron dos placas rectangulares con dimensiones de 7 x 20 cm. Estas placas fueron unidas mediante extensiones metálicas de 2 pulgadas, con el propósito de generar una estructura sólida de dos niveles que permitiera una mejor distribución de los componentes electrónicos y mecánicos del sistema.
+
+En la parte frontal inferior de la base se instaló el mecanismo de giro, el cual cumple la función de proporcionar movilidad direccional al prototipo. En la parte trasera inferior se fijó la transmisión, encargada de transferir la potencia necesaria para el desplazamiento. Esta disposición facilita la estabilidad del vehículo y permite que la distribución del peso sea más equilibrada.
+
+Posteriormente, en el primer nivel de la estructura se colocó la placa Raspberry Pi, destinada al procesamiento central y a la ejecución de los programas principales de control. En el segundo nivel se instalaron las baterías 18650, las cuales suministran la energía requerida para el funcionamiento del sistema. Junto a estas baterías se integró la placa Arduino junto con su shield, la cual se encarga de la comunicación directa con los sensores y actuadores, así como de las tareas de control a bajo nivel.
+
+De esta manera, la organización en dos niveles no solo permitió aprovechar mejor el espacio disponible, sino que también garantizó una adecuada separación entre los módulos de potencia y los módulos de control, reduciendo así posibles interferencias y facilitando el mantenimiento del prototipo.
+
+
+
