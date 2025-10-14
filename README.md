@@ -1,5 +1,15 @@
 # Cyber-Core
 
+
+
+
+> Proverbios 16:3
+“Encomienda al Señor tus obras, y tus pensamientos serán afirmados.”
+
+
+
+
+
 Este repositorio contiene la documentación para la participación de Cyber-Core para la 
 competencia de la categoria WRO Futuros Ingenieros 2025. Nuestro vehículo está 
 diseñado por un equipo guatemalteco apasionado por la robótica.
