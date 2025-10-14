@@ -1,0 +1,599 @@
+#!/usr/bin/env python3
+"""
+wro_roi_color_logic.py
+- ROIs flotantes: top-left, top-right, center-bottom
+- Detecta paredes negras en rectángulos laterales y corrige gradualmente
+- Detecta líneas azules y naranjas en el rectángulo central
+- Si azul está más cerca que naranja -> girar izquierda
+  Si naranja está más cerca que azul -> girar derecha
+- Detecta cubo rojo robusto (vertical, grande, suficiente rojo)
+- Envía STEER:<int> por serial (-100 .. 100)
+"""
+
+import cv2
+import numpy as np
+import threading
+import time
+import serial
+import argparse
+
+# -----------------------
+# Config
+# -----------------------
+CAM_INDEX = 0
+FRAME_W = 640
+FRAME_H = 360
+
+C_RECT = (int(FRAME_W*0.25), int(FRAME_H*0.65), int(FRAME_W*0.5), int(FRAME_H*0.25))
+x_c, y_c, w_c, h_c = C_RECT
+rect_height = int((FRAME_H - 20) * 0.8)
+TL_RECT = (0, FRAME_H - rect_height - 10, 100, rect_height)
+TR_RECT = (FRAME_W - 100, FRAME_H - rect_height - 10, 100, rect_height)
+SERIAL_PORT = "/dev/ttyUSB0"
+SERIAL_BAUD = 115200
+
+BLUE_LO = np.array([85, 60, 40])    # Más permisivo en H, S y V
+BLUE_HI = np.array([150, 255, 255]) # Más ancho en H
+ORANGE_LO = np.array([5, 120, 120])
+ORANGE_HI = np.array([22, 255, 255])
+RED_LO1 = np.array([0, 160, 100])
+RED_HI1 = np.array([8, 255, 255])
+RED_LO2 = np.array([172, 160, 100])
+RED_HI2 = np.array([179, 255, 255])
+BLACK_THRESHOLD = 100
+
+STEER_LIMIT = 400
+WALL_GAIN = 14.0
+VELOCIDAD_FIJA = int(160 * 0.6)  # velocidad reducida
+
+# -----------------------
+# Utils
+# -----------------------
+def mask_color_hsv(bgr, lo, hi):
+    hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+    m = cv2.inRange(hsv, lo, hi)
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3))
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, kernel, iterations=1)
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, kernel, iterations=1)
+    return m
+
+def mask_black_gray(bgr, thresh=BLACK_THRESHOLD):
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    mean_val = np.mean(gray)
+    dynamic_thresh = min(thresh, int(mean_val * 0.8))
+    _, m = cv2.threshold(gray, dynamic_thresh, 255, cv2.THRESH_BINARY_INV)
+    mask_white = cv2.inRange(gray, 200, 255)
+    m = cv2.bitwise_and(m, cv2.bitwise_not(mask_white))
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+    m = cv2.morphologyEx(m, cv2.MORPH_OPEN, kernel, iterations=2)
+    m = cv2.morphologyEx(m, cv2.MORPH_CLOSE, kernel, iterations=2)
+    contours, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    mask_filtered = np.zeros_like(m)
+    for cnt in contours:
+        x, y, w, h = cv2.boundingRect(cnt)
+        if w > 3*h or h > 3*w or w*h < 80:
+            continue
+        cv2.drawContours(mask_filtered, [cnt], -1, 255, -1)
+    return mask_filtered
+
+def invasion_ratio(mask):
+    area = mask.shape[0] * mask.shape[1]
+    if area == 0:
+        return 0.0
+    inv = cv2.countNonZero(mask) / float(area)
+    return inv
+
+def lowest_point_of_mask(mask):
+    ys, xs = np.where(mask > 0)
+    if len(ys) == 0:
+        return None
+    return int(np.max(ys))
+
+def _rotated_rect_mask(shape_hw, rect):
+    box = cv2.boxPoints(rect).astype(np.int32)
+    m = np.zeros(shape_hw, dtype=np.uint8)
+    cv2.fillPoly(m, [box], 255)
+    return m, box
+
+def _is_hue_red(mean_h):
+    return (0 <= mean_h <= 10) or (170 <= mean_h <= 179)
+
+def _red_ratio_in_mask(mask_red, mask_poly):
+    inter = cv2.bitwise_and(mask_red, mask_poly)
+    red_px = cv2.countNonZero(inter)
+    tot_px = cv2.countNonZero(mask_poly)
+    if tot_px == 0:
+        return 0.0
+    return red_px / float(tot_px)
+
+def detectar_cubo_rojo(frame, distancia_max=300):
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    mask_orange = cv2.inRange(hsv, ORANGE_LO, ORANGE_HI)
+    m1 = cv2.inRange(hsv, RED_LO1, RED_HI1)
+    m2 = cv2.inRange(hsv, RED_LO2, RED_HI2)
+    mask_red = cv2.bitwise_or(m1, m2)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+    mask_red = cv2.morphologyEx(mask_red, cv2.MORPH_OPEN, kernel, iterations=2)
+    mask_red = cv2.morphologyEx(mask_red, cv2.MORPH_CLOSE, kernel, iterations=2)
+    mask_red = cv2.bitwise_and(mask_red, cv2.bitwise_not(mask_orange))
+
+    # --- Aquí el cambio: busca contornos en mask_red, no en edges ---
+    contours, _ = cv2.findContours(mask_red, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    MIN_CUBO_AREA = 1200
+    V_RATIO_MIN = 1.3
+    LINE_REJECT_ASPECT = 2.8
+
+    best = None
+    best_area = 0
+
+    for cnt in contours:
+        area = cv2.contourArea(cnt)
+        if area < MIN_CUBO_AREA:
+            continue
+        x, y, w, h = cv2.boundingRect(cnt)
+        aspect = max(w, h) / (min(w, h) + 1e-6)
+        is_vertical = (h >= w) and (h / (w + 1e-6) >= V_RATIO_MIN)
+        if aspect > LINE_REJECT_ASPECT:
+            continue
+        if not is_vertical:
+            continue
+        if area > best_area:
+            best_area = area
+            cx = x + w // 2
+            cy = y + h // 2
+            distancia = 3000.0 / max(1.0, w)
+            if distancia <= distancia_max:
+                best = (x, y, w, h, distancia, cx, cy)
+    return best
+
+# -----------------------
+# Capture thread
+# -----------------------
+class CaptureThread(threading.Thread):
+    def __init__(self, index=0, w=FRAME_W, h=FRAME_H):
+        super().__init__(daemon=True)
+        self.cap = cv2.VideoCapture(index)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, w)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, h)
+        self.lock = threading.Lock()
+        self.frame = None
+        self.running = True
+
+    def run(self):
+        time.sleep(0.2)
+        while self.running:
+            ret, f = self.cap.read()
+            if not ret:
+                continue
+            with self.lock:
+                self.frame = f.copy()
+        self.cap.release()
+
+    def read(self):
+        with self.lock:
+            return None if self.frame is None else self.frame.copy()
+
+    def stop(self):
+        self.running = False
+
+# -----------------------
+# Main logic
+# -----------------------
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--show", action="store_true", help="Mostrar ventanas")
+    args = parser.parse_args()
+
+    cap = CaptureThread(CAM_INDEX, FRAME_W, FRAME_H)
+    cap.start()
+    time.sleep(0.5)
+
+    ser = None
+    try:
+        ser = serial.Serial(SERIAL_PORT, SERIAL_BAUD, timeout=0.1)
+        print("Serial abierto:", SERIAL_PORT)
+    except Exception as e:
+        print("No se pudo abrir serial:", e)
+        ser = None
+
+    print("Iniciando loop. Presionar ESC para salir.")
+
+    estado_giro = None
+    linea_inicial = None
+    evade_hold = 0
+    last_evade_steer = 0
+
+    cubo_persist = None
+    cubo_lost_frames = 0
+    CUBO_MAX_LOST = 5  # frames de tolerancia
+
+    dist_der = None
+    dist_izq = None
+    dist_front = None  # NUEVO
+    dist_izq_inicial = None
+    evadiendo_cubo = False
+    evasiva_en_progreso = False
+    tiempo_inicio_evasiva = 0
+    DURACION_EVASIVA = 1.2  # segundos, ajusta según pruebas
+    evasiva_pausada = False
+    evasion_pausada_por_linea = False
+    accion_linea_en_evasion = False
+
+    # Variables de estado (al inicio del main)
+    evadiendo_cubo = False
+    pausa_evasion_por_linea = False
+    reanudar_evasion = False
+    primer_linea_detectada = None
+    en_giro_vuelta = False
+
+    while True:
+        frame = cap.read()
+        if frame is None:
+            time.sleep(0.01)
+            continue
+        disp = frame.copy()
+
+        # --- ROIs ---
+        roi_c = frame[y_c:y_c+h_c, x_c:x_c+w_c]
+        roi_tl = frame[TL_RECT[1]:TL_RECT[1]+TL_RECT[3], TL_RECT[0]:TL_RECT[0]+TL_RECT[2]]
+        roi_tr = frame[TR_RECT[1]:TR_RECT[1]+TR_RECT[3], TR_RECT[0]:TR_RECT[0]+TL_RECT[2]]
+
+        # --- Máscaras de color ---
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        mask_orange_full = cv2.inRange(hsv, ORANGE_LO, ORANGE_HI)
+        m1 = cv2.inRange(hsv, RED_LO1, RED_HI1)
+        m2 = cv2.inRange(hsv, RED_LO2, RED_HI2)
+        mask_red = cv2.bitwise_or(m1, m2)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
+        mask_red = cv2.morphologyEx(mask_red, cv2.MORPH_OPEN, kernel, iterations=2)
+        mask_red = cv2.morphologyEx(mask_red, cv2.MORPH_CLOSE, kernel, iterations=2)
+        mask_red = cv2.bitwise_and(mask_red, cv2.bitwise_not(mask_orange_full))
+        mask_blue = mask_color_hsv(roi_c, BLUE_LO, BLUE_HI)
+        mask_orange = mask_color_hsv(roi_c, ORANGE_LO, ORANGE_HI)
+        mask_wall_tl = mask_black_gray(roi_tl)
+        mask_wall_tr = mask_black_gray(roi_tr)
+
+        # --- Bordes para depuración ---
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        mask_edges = cv2.Canny(gray, 50, 150)
+        mask_edges = cv2.dilate(mask_edges, cv2.getStructuringElement(cv2.MORPH_RECT, (3,3)), iterations=1)
+
+        # --- Detección de cubo rojo robusta ---
+        cubo = detectar_cubo_rojo(frame, distancia_max=300)
+
+        if cubo is not None:
+            cubo_persist = cubo
+            cubo_lost_frames = 0
+        else:
+            cubo_lost_frames += 1
+            if cubo_lost_frames > CUBO_MAX_LOST:
+                cubo_persist = None
+
+        # --- Detección de líneas en ROI central ---
+        blue_low = lowest_point_of_mask(mask_blue)
+        orange_low = lowest_point_of_mask(mask_orange)
+        hay_azul = blue_low is not None
+        hay_naranja = orange_low is not None
+
+        # --- Detección de paredes ---
+        inv_tl = invasion_ratio(mask_wall_tl)
+        inv_tr = invasion_ratio(mask_wall_tr)
+        # Si hay cubo, la ganancia de pared es muy baja (suave)
+        wall_gain_actual = WALL_GAIN if cubo_persist is None else 2.0  # puedes ajustar 2.0 a 1.0 si quieres aún más suave
+        wall_steer = int(wall_gain_actual * 100 * (inv_tl - inv_tr))
+
+        # --- Lógica de acciones ---
+        steer = 0
+        velocidad = VELOCIDAD_FIJA
+        linea_detectada = 0
+
+        # --- Leer distancias de ultrasonido desde Arduino ---
+        if ser is not None and ser.in_waiting:
+            try:
+                line = ser.readline().decode(errors="ignore").strip()
+                print("Serial recibido:", line)
+                if line.startswith("US:"):
+                    partes = line[3:].split(",")
+                    if len(partes) == 3:  # AHORA ESPERAMOS 3 VALORES
+                        dist_der = int(partes[0])
+                        dist_izq = int(partes[1])
+                        dist_front = int(partes[2])  # NUEVO
+                        print(f"Ultrasonico derecho: {dist_der} cm | izquierdo: {dist_izq} cm | frontal: {dist_front} cm")
+            except Exception as e:
+                print("Error leyendo serial:", e)
+
+        # --- Detección de la primera línea y fijar sentido
+        if primer_linea_detectada is None:
+            if hay_azul:
+                primer_linea_detectada = "AZUL"
+                sentido_giro_fijo = "IZQUIERDA"
+                print("Primer línea detectada: AZUL. Sentido de giro fijo: IZQUIERDA")
+            elif hay_naranja:
+                primer_linea_detectada = "NARANJA"
+                sentido_giro_fijo = "DERECHA"
+                print("Primer línea detectada: NARANJA. Sentido de giro fijo: DERECHA")
+
+        # 2. Si detecta el cubo y no está evadiendo, inicia evasión
+        if cubo_persist is not None and not evadiendo_cubo:
+            evadiendo_cubo = True
+            print("Cubo detectado: iniciando evasión.")
+
+        # 3. Si está evadiendo y detecta una línea, pausa evasión y ejecuta acción de línea
+        if evadiendo_cubo and (hay_azul or hay_naranja) and not pausa_evasion_por_linea:
+            pausa_evasion_por_linea = True
+            print("Línea detectada durante evasión: pausando evasión y ejecutando acción de línea.")
+
+        # 4. Acción de línea (giro de vuelta) mientras está pausada la evasión
+        if pausa_evasion_por_linea:
+            if primer_linea_detectada == "AZUL":
+                if hay_naranja:
+                    steer = -STEER_LIMIT
+                    en_giro_vuelta = True
+                else:
+                    if en_giro_vuelta:
+                        steer = 0
+                        en_giro_vuelta = False
+                        pausa_evasion_por_linea = False
+                        reanudar_evasion = True
+                        print("Acción de línea completada, reanudando evasión.")
+            elif primer_linea_detectada == "NARANJA":
+                if hay_azul:
+                    steer = STEER_LIMIT
+                    en_giro_vuelta = True
+                else:
+                    if en_giro_vuelta:
+                        steer = 0
+                        en_giro_vuelta = False
+                        pausa_evasion_por_linea = False
+                        reanudar_evasion = True
+                        print("Acción de línea completada, reanudando evasión.")
+        # IMPORTANTE: No ejecutar evasión mientras está pausada
+        if pausa_evasion_por_linea:
+            continue
+
+        # 5. Si toca reanudar evasión, sigue con la lógica de evasión del cubo
+        if evadiendo_cubo and not pausa_evasion_por_linea:
+            # Si el sensor frontal detecta pared cerca (<40cm), girar más bruscamente a la izquierda
+            if dist_front is not None and dist_front < 40:
+                steer = -STEER_LIMIT  # Giro máximo a la izquierda
+                print("Frontal <40cm durante evasión: giro MÁS BRUSCO a la IZQUIERDA.")
+                # Corregir con el sensor derecho
+                if dist_der is not None:
+                    if dist_der < 12:
+                        steer -= int(STEER_LIMIT * 0.3)
+                        print("Demasiado cerca de la pared derecha, corrigiendo más a la izquierda.")
+                    elif dist_der > 14:
+                        steer += int(STEER_LIMIT * 0.3)
+                        print("Demasiado lejos de la pared derecha, corrigiendo un poco a la derecha.")
+                steer = int(np.clip(steer, -STEER_LIMIT, STEER_LIMIT))
+                if ser is not None:
+                    try:
+                        steer_norm = int(np.clip(steer / STEER_LIMIT * 100, -100, 100))
+                        pkt = f"STEER:{steer_norm},VEL:{velocidad},LINE:0\n".encode('ascii')
+                        ser.write(pkt)
+                    except Exception as e:
+                        print("Error envío serial:", e)
+                continue
+            # ... resto de evasión ...
+            # Cuando termines la evasión:
+            # evadiendo_cubo = False
+
+        # Salir de evasión cuando el sensor izquierdo detecta que ya pasó el cubo
+        if dist_izq_inicial is not None and dist_izq is not None:
+            if dist_izq < dist_izq_inicial - 5 and dist_izq < 30:
+                evadiendo_cubo = False
+                print("¡Cubo esquivado! Regresando a lógica normal.")
+                # Opcional: reinicia dist_izq_inicial si quieres permitir otra evasión después
+                dist_izq_inicial = None
+                continue
+
+        # 6. Si no está evadiendo, sigue la lógica normal de líneas y paredes
+        if not evadiendo_cubo:
+            if estado_giro is None:
+                if hay_azul and not hay_naranja:
+                    estado_giro = "IZQUIERDA"
+                    linea_inicial = "AZUL"
+                elif hay_naranja and not hay_azul:
+                    estado_giro = "DERECHA"
+                    linea_inicial = "NARANJA"
+            elif estado_giro == "IZQUIERDA":
+                if hay_naranja:
+                    estado_giro = "ESPERANDO_CAMBIO"
+            elif estado_giro == "DERECHA":
+                if hay_azul:
+                    estado_giro = "ESPERANDO_CAMBIO"
+            elif estado_giro == "ESPERANDO_CAMBIO":
+                if linea_inicial == "AZUL" and not hay_naranja:
+                    estado_giro = None
+                    linea_inicial = None
+                elif linea_inicial == "NARANJA" and not hay_azul:
+                    estado_giro = None
+                    linea_inicial = None
+
+            if estado_giro == "IZQUIERDA":
+                steer = -STEER_LIMIT
+                linea_detectada = 1
+            elif estado_giro == "DERECHA":
+                steer = STEER_LIMIT
+                linea_detectada = 1
+            else:
+                # Solo corrige si NO hay pared de frente (ambos laterales con mucha invasión)
+                suma_invasion = inv_tl + inv_tr
+                if abs(inv_tl - inv_tr) > 0.03 and suma_invasion < 0.7:
+                    steer = wall_steer
+                else:
+                    steer = 0
+
+        steer = int(np.clip(steer, -STEER_LIMIT, STEER_LIMIT))
+
+        # --- Envío serial ---
+        if ser is not None:
+            try:
+                steer_norm = int(np.clip(steer / STEER_LIMIT * 100, -100, 100))
+                pkt = f"STEER:{steer_norm},VEL:{velocidad},LINE:{linea_detectada}\n".encode('ascii')
+                ser.write(pkt)
+            except Exception as e:
+                print("Error envío serial:", e)
+
+        # --- Señal de cubo rojo para Arduino ---
+        cubo_detectado = 1 if cubo_persist is not None else 0
+        if ser is not None:
+            try:
+                ser.write(f"CUBO:{cubo_detectado}\n".encode('ascii'))
+            except Exception as e:
+                print("Error envío señal cubo:", e)
+
+        # --- Visualización de máscaras y ROIs ---
+        cv2.imshow("mask_red", cv2.resize(mask_red, (320,180)))
+        cv2.imshow("mask_blue", cv2.resize(mask_blue, (320,180)))
+        cv2.imshow("mask_orange", cv2.resize(mask_orange, (320,180)))
+        mask_wall_combined = cv2.bitwise_or(mask_wall_tl, mask_wall_tr)
+        cv2.imshow("mask_wall", cv2.resize(mask_wall_combined, (320,180)))
+        cv2.imshow("mask_edges", cv2.resize(mask_edges, (320,180)))
+        cv2.imshow("roi_c", cv2.resize(roi_c, (320,180)))
+        cv2.imshow("roi_tl", cv2.resize(roi_tl, (160,90)))
+        cv2.imshow("roi_tr", cv2.resize(roi_tr, (160,90)))
+        cv2.rectangle(disp, (x_c, y_c), (x_c+w_c, y_c+h_c), (255,255,0), 2)
+        cv2.rectangle(disp, (TL_RECT[0], TL_RECT[1]), (TL_RECT[0]+TL_RECT[2], TL_RECT[1]+TL_RECT[3]), (0,255,255), 2)
+        cv2.rectangle(disp, (TR_RECT[0], TR_RECT[1]), (TR_RECT[0]+TR_RECT[2], TR_RECT[1]+TR_RECT[3]), (0,255,255), 2)
+
+        # --- Visualización de cubo rojo ---
+        if cubo_persist is not None:
+            x, y, w, h, distancia, cx, cy = cubo_persist
+            cv2.rectangle(disp, (x, y), (x+w, y+h), (0,0,255), 2)
+            cv2.putText(disp, f"CUBO ROJO", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,255), 2)
+            cv2.putText(disp, f"Dist: {distancia:.1f}", (x, y+h+20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,255), 2)
+
+        cv2.imshow("frame", cv2.resize(disp, (320,180)))
+        if cv2.waitKey(1) & 0xFF == 27:
+            break
+
+    cap.stop()
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+________________________________________________________________________________________________
+
+
+
+
+
+#include <Servo.h>
+#include "DeviceDriverSet.h"
+
+Servo steeringServo;
+DeviceDriverSet_Motor motor;
+
+const int SERVO_PIN = 10;
+const int BUTTON_PIN = 2;
+const int SERVO_CENTER = 111;
+const int SERVO_MIN = 70;
+const int SERVO_MAX = 170;
+
+// Pines de ultrasonido
+const int US_RIGHT_TRIG = 13;
+const int US_RIGHT_ECHO = 12;
+const int US_LEFT_TRIG = A0;
+const int US_LEFT_ECHO = A1;
+// NUEVO: Pines para el ultrasÃ³nico frontal
+const int US_FRONT_TRIG = A2;
+const int US_FRONT_ECHO = A5;
+
+bool motorActivo = false;
+bool botonPrevio = HIGH;
+
+void setup() {
+  Serial.begin(115200);
+  steeringServo.attach(SERVO_PIN);
+  steeringServo.write(SERVO_CENTER);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  motor.begin();
+
+  pinMode(US_RIGHT_TRIG, OUTPUT);
+  pinMode(US_RIGHT_ECHO, INPUT);
+  pinMode(US_LEFT_TRIG, OUTPUT);
+  pinMode(US_LEFT_ECHO, INPUT);
+  // NUEVO
+  pinMode(US_FRONT_TRIG, OUTPUT);
+  pinMode(US_FRONT_ECHO, INPUT);
+}
+
+void loop() {
+  // BotÃ³n para activar/desactivar motores
+  bool botonPresionado = (digitalRead(BUTTON_PIN) == LOW);
+  if (botonPrevio == HIGH && botonPresionado) {
+    motorActivo = !motorActivo;
+    if (!motorActivo) {
+      pararMotor();
+    }
+    delay(300);
+  }
+  botonPrevio = botonPresionado;
+
+  // Procesa comandos por serial (igual que antes)
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    int steer = 0, vel = 0, line = 0;
+    if (sscanf(cmd.c_str(), "STEER:%d,VEL:%d,LINE:%d", &steer, &vel, &line) == 3) {
+      steer = constrain(steer, -100, 100);
+      int angle = map(steer, -100, 100, SERVO_MIN, SERVO_MAX);
+      angle = constrain(angle, SERVO_MIN, SERVO_MAX);
+      steeringServo.write(angle);
+
+      if (motorActivo) {
+        int velFinal = (line == 1) ? 150 : vel;
+        moverMotores(velFinal);
+      } else {
+        pararMotor();
+      }
+    }
+  }
+
+  // Medir y enviar distancias cada 50 ms
+  static unsigned long lastSend = 0;
+  if (millis() - lastSend > 50) {
+    long distDer = medirUltrasonico(US_RIGHT_TRIG, US_RIGHT_ECHO);
+    long distIzq = medirUltrasonico(US_LEFT_TRIG, US_LEFT_ECHO);
+    long distFront = medirUltrasonico(US_FRONT_TRIG, US_FRONT_ECHO); // NUEVO
+    Serial.print("US:");
+    Serial.print(distDer);
+    Serial.print(",");
+    Serial.print(distIzq);
+    Serial.print(",");
+    Serial.println(distFront); // NUEVO
+    lastSend = millis();
+  }
+}
+
+long medirUltrasonico(int trigPin, int echoPin) {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long duracion = pulseIn(echoPin, HIGH, 20000);
+  long distancia = duracion * 0.034 / 2;
+  return distancia;
+}
+
+void moverMotores(int velocidadBase) {
+  motor.control(
+    DeviceDriverSet_Motor::FORWARD, velocidadBase,
+    DeviceDriverSet_Motor::FORWARD, velocidadBase,
+    true
+  );
+}
+
+void pararMotor() {
+  motor.control(
+    DeviceDriverSet_Motor::FORWARD, 0,
+    DeviceDriverSet_Motor::FORWARD, 0,
+    false
+  );
+}
