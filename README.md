@@ -32,6 +32,10 @@ resultado de trabajo duro, largas horas y una confianza inquebrantable entre nos
 más poderoso:la determinación de nunca rendirnos y la certeza de que, con creatividad y trabajo en equipo, podemos lograr cosas 
 increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos en lo que hacemos.
 
+ Proverbios 2:6:
+
+> “Porque Jehová da la sabiduría, y de su boca viene el conocimiento y la inteligencia.”
+
 
                           ELEAZAR ABISAI PACHECO OLIVA
  - EDAD: 17 AÑOS.
@@ -41,6 +45,11 @@ increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos 
  Bachillerato. Para mi, la robótica representa un camino de aprendizaje y superación, 
  donde cada proyecto me ha permitido desarrollar liderazgo, creatividad y confianza en 
  en sus capacidades, siempre trabajando en equipo para alcanzar nuevas metas.
+
+
+
+> Isaías 43:2
+“Cuando pases por las aguas, yo estaré contigo; y si por los ríos, no te anegarán; cuando pases por el fuego, no te quemarás, ni la llama te abrasará.”
 
 
 
