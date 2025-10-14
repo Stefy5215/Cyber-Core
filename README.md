@@ -52,14 +52,13 @@ ________________________________________________________________________________
 
 - MISIÓN
 
-Nuestra misión es diseñar, construir y programar un vehículo autónomo que sea capaz de enfrentar con éxito los diversos retos de movilidad 
-planteados en la competencia. Para lograrlo, integramos principios fundamentales de la ingeniería, la creatividad, el pensamiento crítico y la 
+Nuestra misión es diseñar, construir y programar un vehículo autónomo que sea capaz de enfrentar con la variedad retos de movilidad 
+planteados en la competencia. Para que funcionara, integramos principios fundamentales de la ingeniería, la creatividad, el pensamiento crítico y la 
 innovación tecnológica, con el objetivo de desarrollar soluciones que no solo sean funcionales, sino también 
 seguras, eficientes y sostenibles.
 
 Nos enfocamos en el aprendizaje constante, el trabajo colaborativo y la aplicación práctica de nuestros conocimientos, creando un entorno donde cada 
-integrante del equipo pueda aportar sus habilidades y crecer profesional y personalmente. A través de este proyecto, buscamos no solo alcanzar un 
-alto rendimiento técnico, sino también fomentar valores como la responsabilidad, la resiliencia y el compromiso con el desarrollo de tecnologías que 
+integrante del equipo pueda aportar sus habilidades y crecer personalmente. A través de este proyecto, buscamos no solo alcanzar un conocimiento bastante alto, sino también fomentar valores como la responsabilidad, la resiliencia y el compromiso con el desarrollo de tecnologías que 
 impacten positivamente a la sociedad.
 
 Queremos demostrar que la robótica y la automatización no son solo herramientas del futuro, sino oportunidades presentes para construir un mundo más 
@@ -76,7 +75,7 @@ capacidad para transformar ideas en soluciones concretas que contribuyan a mejor
 combinación de creatividad, disciplina, conocimiento técnico y trabajo en equipo puede dar lugar a desarrollos que inspiren a otras generaciones de 
 estudiantes, ingenieros y entusiastas de la tecnología.
 
-Queremos ir más allá de una competencia: buscamos dejar huella como un grupo que se atreve a imaginar, diseñar y construir tecnologías disruptivas
+Queremos ir más allá de una competencia.Buscamos dejar huella como un grupo que se atreve a imaginar, diseñar y construir tecnologías 
 con impacto real. Visualizamos un futuro en el que nuestra experiencia y nuestras creaciones sirvan de base para nuevos proyectos, investigaciones y 
 emprendimientos que promuevan la evolución hacia sistemas de transporte más inteligentes, seguros y sostenibles.
 
