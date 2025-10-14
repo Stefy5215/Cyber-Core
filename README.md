@@ -52,14 +52,9 @@ ________________________________________________________________________________
 
 - MISIÓN
 
-Nuestra misión es diseñar, construir y programar un vehículo autónomo que sea capaz de enfrentar con la variedad retos de movilidad 
-planteados en la competencia. Para que funcionara, integramos principios fundamentales de la ingeniería, la creatividad, el pensamiento crítico y la 
-innovación tecnológica, con el objetivo de desarrollar soluciones que no solo sean funcionales, sino también 
-seguras, eficientes y sostenibles.
+Nuestra misión es construir, diseñar y programar un vehículo capaz de terminar la variedad de retos dentro de la competencia. Para que este funcionara, utilizamos funcionara básicas de la ingeniería, creatividad, electrónica muchas funciones más que ayudaron a que nuestro vehículo se viera estéticamente bonito y funcionara de manera excelente.
 
-Nos enfocamos en el aprendizaje constante, el trabajo colaborativo y la aplicación práctica de nuestros conocimientos, creando un entorno donde cada 
-integrante del equipo pueda aportar sus habilidades y crecer personalmente. A través de este proyecto, buscamos no solo alcanzar un conocimiento bastante alto, sino también fomentar valores como la responsabilidad, la resiliencia y el compromiso con el desarrollo de tecnologías que 
-impacten positivamente a la sociedad.
+Nosotros como Colegio Villa Real Atlántico practicamos 3 valores: amor, necesaria para solucionar los problemas que en algún momento enfrentamos como equipo; disciplina, uno de los valores más importantes para que el proyecto pudiera llevarse a cabo con éxito; excelencia, cada granito de esfuerzo, por muy pequeño que sea, nos lleva a la excelencia. 
 
 Queremos demostrar que la robótica y la automatización no son solo herramientas del futuro, sino oportunidades presentes para construir un mundo más 
 inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visión y pasión por la ingeniería.
@@ -70,18 +65,12 @@ inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visió
 
 - VISIÓN
 
-Nuestra visión es convertirnos en un equipo líder y referente en el ámbito de la robótica e innovación tecnológica, reconocidos por nuestra 
-capacidad para transformar ideas en soluciones concretas que contribuyan a mejorar la movilidad del futuro. Aspiramos a ser un ejemplo de cómo la 
-combinación de creatividad, disciplina, conocimiento técnico y trabajo en equipo puede dar lugar a desarrollos que inspiren a otras generaciones de 
+Nuestra visión es convertirnos en un equipo capaz de liderar con amor, disciplina y excelencia en el ámbito robótico y tecnológico dando a conocer nuestros valores honrando a nuestro creador, nuestro Dios. Aspiramos a ser un ejemplo de cómo la 
+combinación de nuestra fe, creatividad, disciplina, conocimiento técnico y trabajo en equipo puede dar lugar a desarrollos que inspiren a otras generaciones de 
 estudiantes, ingenieros y entusiastas de la tecnología.
 
-Queremos ir más allá de una competencia.Buscamos dejar huella como un grupo que se atreve a imaginar, diseñar y construir tecnologías 
-con impacto real. Visualizamos un futuro en el que nuestra experiencia y nuestras creaciones sirvan de base para nuevos proyectos, investigaciones y 
-emprendimientos que promuevan la evolución hacia sistemas de transporte más inteligentes, seguros y sostenibles.
-
-Nos proyectamos como una comunidad de aprendizaje que crece con cada desafío, que comparte el conocimiento y que mantiene viva la pasión por 
-innovar, creyendo firmemente que la tecnología, guiada por principios éticos y humanos, puede ser una herramienta transformadora al servicio del 
-bienestar colectivo.
+Queremos ir más allá de una competencia.Buscamos dejar huella como dos personas que se atreven a imaginar, diseñar y construir tecnologías 
+con impacto real. Visualizamos un futuro en el que nuestra experiencia y nuestras creaciones sirvan de base para nuevas generaciones amantes de la tecnología y la innovación.
 
 
 
