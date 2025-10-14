@@ -60,6 +60,12 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________
 
 
+> Proverbios 16:9
+“El corazón del hombre traza su rumbo, pero sus pasos los dirige el Señor.”
+
+
+
+
 - MISIÓN
 
 Nuestra misión es construir, diseñar y programar un vehículo capaz de terminar la variedad de retos dentro de la competencia. Para que este funcionara, utilizamos funcionara básicas de la ingeniería, creatividad, electrónica muchas funciones más que ayudaron a que nuestro vehículo se viera estéticamente bonito y funcionara de manera excelente.
@@ -71,6 +77,9 @@ inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visió
 
 
 
+
+> Filipenses 4:13
+“Todo lo puedo en Cristo que me fortalece.”
 
 
 - VISIÓN
@@ -89,6 +98,10 @@ con impacto real. Visualizamos un futuro en el que nuestra experiencia y nuestra
 ________________________________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________
 
+
+
+> Josué 1:9
+“Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque el Señor tu Dios estará contigo en dondequiera que vayas.”
 
 
 - RETO
@@ -111,6 +124,10 @@ conocimientos y acercarnos al mundo de la ingeniería del futuro.
 ________________________________________________________________________________________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________
 
+
+
+> Proverbios 22:29
+“¿Has visto a alguien diligente en su trabajo? Delante de los reyes estará; no estará delante de los de baja condición.”
 
 
 - RESUMEN DEL CARRITO
@@ -147,6 +164,12 @@ La tercera etapa concluye con una maniobra de estacionamiento automático, donde
 delimitada por tablas de color rosado.
 En esta fase, el sistema combina visión por computadora y control de movimiento para lograr un posicionamiento exacto, completando con éxito el recorrido de
 manera totalmente autónoma.
+
+
+
+
+> Eclesiastés 4:9
+“Mejores son dos que uno; porque tienen mejor paga de su trabajo.”
 
 
 ENSAMBLAJE DEL CARRITO
