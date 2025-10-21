@@ -77,9 +77,9 @@ ________________________________________________________________________________
 
 - MISIÓN
 
-Nuestra misión es construir, diseñar y programar un vehículo capaz de terminar la variedad de retos dentro de la competencia. Para que este funcionara, utilizamos funcionara básicas de la ingeniería, creatividad, electrónica muchas funciones más que ayudaron a que nuestro vehículo se viera estéticamente bonito y funcionara de manera excelente.
+Nuestra misión es construir, diseñar y programar un vehículo capaz de terminar la variedad de retos dentro de la competencia. Para que este funcionara, utilizamos funciones básicas de la ingeniería, creatividad, electrónica y muchas funciones más que ayudaron a que nuestro vehículo se viera estéticamente bonito y funcionara de manera excelente.
 
-Nosotros como Colegio Villa Real Atlántico practicamos 3 valores: amor, necesaria para solucionar los problemas que en algún momento enfrentamos como equipo; disciplina, uno de los valores más importantes para que el proyecto pudiera llevarse a cabo con éxito; excelencia, cada granito de esfuerzo, por muy pequeño que sea, nos lleva a la excelencia. 
+Nosotros como Colegio Villa Real Atlántico practicamos 3 valores: amor, necesaria para solucionar los problemas que en algún momento enfrentamos como equipo; disciplina, uno de los valores más importantes para que el proyecto pudiera llevarse a cabo con éxito; excelencia, cada granito de esfuerzo, por muy pequeño que sea, nos lleva al éxito. 
 
 Queremos demostrar que la robótica y la automatización no son solo herramientas del futuro, sino oportunidades presentes para construir un mundo más 
 inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visión y pasión por la ingeniería.
@@ -116,9 +116,11 @@ ________________________________________________________________________________
 - RETO
 
 El reto de la competencia WRO Futuros Ingenieros busca que los estudiantes desarrollen habilidades de diseño, innovacion y trabajo en equipo através
-de la construccion y programacion de vehículos autónomos. Este desafío no solo pone a prueba la creatividad y la precision, sino también lacapacidad 
-de resolver problemas reales aplicando la ingenieria y la tecnología. Más que una competencia,representa una oportunidad para crecer, compartir 
-conocimientos y acercarnos al mundo de la ingeniería del futuro.
+de la construccion y programacion de vehículos autónomos. Este desafío no solo pone a prueba la creatividad y la precision, sino también la capacidad 
+de resolver problemas reales aplicando la tecnología. Más que una competencia,representa una oportunidad para crecer, compartir 
+conocimientos y acercarnos al mundo de larobótica.
+
+diseñado Para:
 
 - Detectar y evitar obstáculos
 - Seguir el camino de las pistas de manera autónoma
@@ -141,8 +143,8 @@ ________________________________________________________________________________
 
 - RESUMEN DEL CARRITO
 
-Nuestro carrito ha sido desarrollado para operar de manera completamente autónoma, sin intervención humana directa durante su desplazamiento. Su
-funcionamiento se basa en el uso de una cámara y redes neuronales, lo que le permite tomar decisiones inteligentes en tiempo real, dependiendo del 
+Nuestro carrito ha sido desarrollado para moverse de manera completamente autónoma, sin intervención humana directa durante su desplazamiento. Su
+funcionamiento se basa en el uso de cámaras y redes neuronales, lo que le permite tomar decisiones inteligentes en tiempo real, dependiendo del 
 entorno que percibe a través de la visión artificial.
 
 - Etapa 1 – Guiado por Colores ( Azul y Naranja)
