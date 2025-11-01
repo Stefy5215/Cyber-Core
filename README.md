@@ -16,6 +16,10 @@ diseñado por un equipo guatemalteco apasionado por la robótica.
 
 
 
+Desde Guatemala hasta Singapur 
+
+
+
 
 
 
