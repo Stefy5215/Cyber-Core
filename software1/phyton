@@ -1,0 +1,190 @@
+import cv2
+import numpy as np
+import serial
+import time
+from keras.models import load_model
+
+# ==================== CONFIGURACIÃ“N ====================
+np.set_printoptions(suppress=True)
+
+# Ruta absoluta del proyecto
+RUTA_PROYECTO = "/home/eleazar/proyecto wro"
+
+# Cargar modelo de red neuronal con ruta absoluta
+model = load_model(f"{RUTA_PROYECTO}/keras_Model.h5", compile=False)
+class_names = open(f"{RUTA_PROYECTO}/labels.txt", "r").readlines()
+
+# Conectar con Arduino - BAUDRATE 115200 (igual que Arduino)
+try:
+    arduino = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+    time.sleep(2)
+    print("âœ… Arduino conectado en /dev/ttyACM0 a 115200 baud")
+except:
+    try:
+        arduino = serial.Serial("/dev/ttyUSB0", 115200, timeout=1)
+        time.sleep(2)
+        print("âœ… Arduino conectado en /dev/ttyUSB0 a 115200 baud")
+    except:
+        print("âŒ ERROR: No se pudo conectar con Arduino")
+        exit(1)
+
+camera = cv2.VideoCapture(0)
+camera.set(cv2.CAP_PROP_FPS, 30)
+camera.set(3, 640)
+camera.set(4, 480)
+
+# ==================== FUNCIONES ====================
+def calcular_invasion(frame, roi):
+    """
+    Calcula invasiÃ³n SOLO en los bordes laterales del ROI.
+    Ignora el centro para evitar detectar la pared frontal.
+    """
+    x, y, w, h = roi
+    roi_frame = frame[y:y+h, x:x+w]
+    gray = cv2.cvtColor(roi_frame, cv2.COLOR_BGR2GRAY)
+    _, mask = cv2.threshold(gray, 60, 255, cv2.THRESH_BINARY_INV)
+    
+    # Solo analizar los bordes laterales (30% izquierdo + 30% derecho)
+    # Ignorar el 40% central que podrÃ­a tener la pared frontal
+    ancho_borde = int(w * 0.30)  # 30% de cada lado
+    
+    # Extraer solo las columnas laterales
+    borde_izq = mask[:, :ancho_borde]  # 30% izquierdo
+    borde_der = mask[:, -ancho_borde:]  # 30% derecho
+    
+    # Contar pÃ­xeles blancos solo en los bordes
+    pixeles_blancos = np.sum(borde_izq == 255) + np.sum(borde_der == 255)
+    pixeles_totales = ancho_borde * h * 2  # Total de pÃ­xeles en ambos bordes
+    
+    # Calcular porcentaje base
+    invasion_base = pixeles_blancos / pixeles_totales * 100
+    
+    # ðŸ”¥ AMPLIFICAR SENSIBILIDAD: Multiplicar x2 para reaccionar mÃ¡s rÃ¡pido
+    invasion = int(min(invasion_base * 2.0, 100))  # Max 100%
+    
+    return invasion
+
+def detectar_color_linea(roi_frame):
+    hsv = cv2.cvtColor(roi_frame, cv2.COLOR_BGR2HSV)
+    mask_azul = cv2.inRange(hsv, (90, 100, 70), (130, 255, 255))
+    
+    # ðŸŸ  RANGO ULTRA EXPANDIDO para NARANJA: incluye hasta amarillo
+    # HUE: 0-85 (rojo + naranja + amarillo + amarillo-verde)
+    # SATURATION: 0-255 (CUALQUIER saturaciÃ³n)
+    # VALUE: 0-255 (CUALQUIER brillo)
+    # Â¡Esto cubre TODO el espectro cÃ¡lido hasta casi el verde!
+    mask_naranja = cv2.inRange(hsv, (0, 0, 0), (85, 255, 255))
+    
+    azul = np.sum(mask_azul > 0)
+    naranja = np.sum(mask_naranja > 0)
+    
+    # Determinar color detectado (UMBRAL REDUCIDO de 500 a 100)
+    if azul > naranja and azul > 100:
+        color = "AZUL"
+    elif naranja > azul and naranja > 100:
+        color = "NARANJA"
+    else:
+        color = "NONE"
+    
+    # Retornar color Y las mÃ¡scaras para mostrar en ventanas
+    return color, mask_azul, mask_naranja
+
+# ==================== LOOP PRINCIPAL ====================
+while True:
+    ret, frame = camera.read()
+    if not ret:
+        continue
+
+    # ðŸ”„ ROTAR IMAGEN 180 GRADOS
+    frame = cv2.rotate(frame, cv2.ROTATE_180)
+
+    h, w, _ = frame.shape
+
+    # ROIs flotantes (x, y, ancho, alto)
+    # ROIs laterales: DESDE ARRIBA HASTA ABAJO (mÃ¡xima cobertura vertical)
+    roi_left = (int(w * 0.05), 0, 80, int(h * 0.85))     # Izquierda: desde Y=0 hasta 85% altura
+    roi_right = (int(w * 0.82), 0, 80, int(h * 0.85))    # Derecha: desde Y=0 hasta 85% altura
+    
+    # ROI inferior: TODO EL ANCHO de la cÃ¡mara (borde a borde)
+    roi_center = (0, int(h * 0.77), w, 79)  # X=0, Ancho=640 (todo el ancho), Alto: 79
+
+    # DetecciÃ³n red neuronal
+    img = cv2.resize(frame, (224, 224))
+    img = np.asarray(img, dtype=np.float32).reshape(1, 224, 224, 3)
+    img = (img / 127.5) - 1
+    prediction = model.predict(img, verbose=0)
+    index = np.argmax(prediction)
+    class_name = class_names[index].strip()
+    confidence_score = prediction[0][index]
+
+    # Detecta paredes (invasiÃ³n)
+    inv_left = calcular_invasion(frame, roi_left)
+    inv_right = calcular_invasion(frame, roi_right)
+    
+    # âš ï¸ INVERTIR VALORES: Arduino los interpreta al revÃ©s
+    # Lo que detectamos como "izquierda" en cÃ¡mara es "derecha" para Arduino
+    inv_left, inv_right = inv_right, inv_left  # SWAP
+
+    # Si red neuronal detecta lÃ­nea:
+    if "linea" in class_name.lower() and confidence_score > 0.8:
+        roi_frame = frame[
+            roi_center[1]:roi_center[1]+roi_center[3],
+            roi_center[0]:roi_center[0]+roi_center[2]
+        ]
+        color_detectado, mask_azul, mask_naranja = detectar_color_linea(roi_frame)  # Color + mÃ¡scaras
+        color_linea = color_detectado  # Para enviar a Arduino
+        
+        # ðŸ–¼ï¸ MOSTRAR VENTANAS DE MÃSCARAS
+        cv2.imshow("ROI - Deteccion AZUL", mask_azul)
+        cv2.imshow("ROI - Deteccion NARANJA", mask_naranja)
+        
+        # âš ï¸ INTERCAMBIAR COLORES solo para Arduino (los interpreta al revÃ©s)
+        if color_linea == "AZUL":
+            color_linea = "NARANJA"
+        elif color_linea == "NARANJA":
+            color_linea = "AZUL"
+    else:
+        color_detectado = "NONE"
+        color_linea = "NONE"
+
+    # Enviar al Arduino (con colores intercambiados)
+    mensaje = f"INV_L:{inv_left},INV_R:{inv_right},LINE:{color_linea}\n"
+    arduino.write(mensaje.encode())
+
+    # Dibujo de ROIs y textos
+    cv2.rectangle(frame, roi_left[:2], (roi_left[0]+roi_left[2], roi_left[1]+roi_left[3]), (255, 0, 0), 2)
+    cv2.rectangle(frame, roi_right[:2], (roi_right[0]+roi_right[2], roi_right[1]+roi_right[3]), (0, 255, 0), 2)
+    cv2.rectangle(frame, roi_center[:2], (roi_center[0]+roi_center[2], roi_center[1]+roi_center[3]), (0, 0, 255), 2)
+
+    # âš ï¸ MOSTRAR valores INTERCAMBIADOS en la parte INFERIOR de los ROIs
+    cv2.putText(frame, f"L: {inv_right}%", (roi_left[0], roi_left[1]+roi_left[3]+20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    cv2.putText(frame, f"R: {inv_left}%", (roi_right[0], roi_right[1]+roi_right[3]+20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,255), 2)
+    
+    # Mostrar el color REAL detectado (antes de invertir para Arduino)
+    cv2.putText(frame, f"LINEA: {color_detectado}", (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2)
+    
+    # Mostrar AMBAS predicciones de la red neuronal
+    # Clase principal (la que tiene mayor probabilidad)
+    cv2.putText(frame, f"NN: {class_name} ({confidence_score*100:.1f}%)", (20, 70), 
+                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+    
+    # Mostrar TODAS las clases con sus porcentajes
+    y_offset = 100
+    for i, prob in enumerate(prediction[0]):
+        clase = class_names[i].strip()
+        if len(clase) > 2:
+            clase = clase[2:]  # Quitar nÃºmero inicial
+        color = (0, 255, 0) if i == index else (150, 150, 150)  # Verde si es la ganadora
+        cv2.putText(frame, f"{clase}: {prob*100:.1f}%", (20, y_offset), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+        y_offset += 25
+
+    # Mostrar ventana principal
+    cv2.imshow("WRO Vision", frame)
+
+    # Salida con tecla
+    if cv2.waitKey(1) & 0xFF == 27:  # ESC
+        break
+
+camera.release()
+cv2.destroyAllWindows()
