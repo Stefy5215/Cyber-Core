@@ -32,8 +32,8 @@ Desde Guatemala hasta Singapur
 
 Somos un equipo pequeño, pero con un corazón enorme. Solo somos dos, pero juntos formamos una fuerza imparable impulsada desde la 
 pasión por la robótica y el deseo de superarnos. Cada paso que damos, cada error que corregimos y cada avance que logramos es el 
-resultado de trabajo duro, largas horas y una confianza inquebrantable entre nosotros. No tenemos un gran número, pero tenemos algo 
-más poderoso:la determinación de nunca rendirnos y la certeza de que, con creatividad y trabajo en equipo, podemos lograr cosas 
+resultado de trabajo duro, largas horas y una confianza inquebrantable entre nosotros y nuestro padre celestial. No tenemos un gran número, pero tenemos algo 
+más poderoso:la confianza en Dios, la determinación de nunca rendirnos y la certeza de que, con creatividad y trabajo en equipo, podemos lograr cosas 
 increíbles.Porque no se trata de cuántos somos… se trata de cuánto creemos en lo que hacemos.
 
  Proverbios 2:6:
@@ -83,7 +83,7 @@ ________________________________________________________________________________
 
 Nuestra misión es construir, diseñar y programar un vehículo capaz de terminar la variedad de retos dentro de la competencia. Para que este funcionara, utilizamos funciones básicas de la ingeniería, creatividad, electrónica y muchas funciones más que ayudaron a que nuestro vehículo se viera estéticamente bonito y funcionara de manera excelente.
 
-Nosotros como Colegio Villa Real Atlántico practicamos 3 valores: amor, necesaria para solucionar los problemas que en algún momento enfrentamos como equipo; disciplina, uno de los valores más importantes para que el proyecto pudiera llevarse a cabo con éxito; excelencia, cada granito de esfuerzo, por muy pequeño que sea, nos lleva al éxito. 
+Nosotros como Colegio Villa Real Atlántico practicamos 3 valores: amor, necesaria para solucionar los problemas que en algún momento enfrentamos como equipo; disciplina, uno de los valores más importantes para que el proyecto pudiera llevarse a cabo con éxito; y excelencia, cada granito de esfuerzo, por muy pequeño que sea, nos permite alacnzar nuestra meta. 
 
 Queremos demostrar que la robótica y la automatización no son solo herramientas del futuro, sino oportunidades presentes para construir un mundo más 
 inteligente, accesible y sostenible, desde la perspectiva de jóvenes con visión y pasión por la ingeniería.
