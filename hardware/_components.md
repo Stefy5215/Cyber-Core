@@ -21,6 +21,6 @@ Hardware
  ├── 20V / 10A Switch
  │    └── Main Power Control
  │
- └── 3D Prints
+ └── 
       ├── Mounts
       └── Vehicle Structure
