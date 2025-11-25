@@ -15,7 +15,8 @@ From Guatemala to Singapore
 
 TEAM
 
-(photo)
+<img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/1819e5be-872b-4932-a1db-cb9e4fbfb014" />
+
 
 We are a small team, but with a huge heart. We are only two, but together we form an unstoppable force driven by our passion for robotics and our desire to improve ourselves. Every step we take, every mistake we fix, and every achievement we make is the result of hard work, long hours, and unwavering trust between us and our Heavenly Father. We don’t have a large number, but we have something more powerful: trust in God, determination to never give up, and the certainty that with creativity and teamwork, we can achieve incredible things.
 Because it’s not about how many we are… it’s about how much we believe in what we do.
