@@ -26,6 +26,8 @@ Proverbs 2:6:
 “For the Lord gives wisdom; from His mouth come knowledge and understanding.”
 
 ELEAZAR ABISAI PACHECO OLIVA
+<img width="1114" height="891" alt="image" src="https://github.com/user-attachments/assets/3f6bcaa9-223c-4b8e-b47b-4c387c6daa2d" />
+
 
 AGE: 17 YEARS
 
@@ -37,6 +39,8 @@ Isaiah 43:2
 “When you pass through the waters, I will be with you; and through the rivers, they shall not overwhelm you; when you walk through the fire, you shall not be burned, and the flame shall not consume you.”
 
 STEFANY ANDREA TOBAR DE PAZ
+![Uploading image.png…]()
+
 
 AGE: 15 YEARS
 
