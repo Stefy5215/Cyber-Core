@@ -39,7 +39,8 @@ Isaiah 43:2
 “When you pass through the waters, I will be with you; and through the rivers, they shall not overwhelm you; when you walk through the fire, you shall not be burned, and the flame shall not consume you.”
 
 STEFANY ANDREA TOBAR DE PAZ
-![Uploading image.png…]()
+<img width="1200" height="1600" alt="image" src="https://github.com/user-attachments/assets/626dc91e-d11f-4bca-9f4a-9d42a68c40b0" />
+
 
 
 AGE: 15 YEARS
