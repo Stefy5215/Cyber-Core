@@ -135,3 +135,20 @@ https://laelectronica.com.gt/kit-de-carro-de-4-ruedas-metalico-con-sistema-de-gi
 
 <img width="1280" height="960" alt="image" src="https://github.com/user-attachments/assets/63e5286a-ec09-4ff2-85ad-6504007c2f6d" />
 
+ESAMBLAJE DE DISEÑO CAMIONETA GUATEMALTECA
+
+Para el ensamblaje de nuestra camioneta guatemalteca elaborada en cartón, iniciamos con la parte trasera, donde dejamos una puertecita funcional que representa el acceso característico de estos vehículos. Luego trabajamos los laterales, recortando las ventanas y realizando los agujeros necesarios para evitar interferencias con los componentes del proyecto. Después construimos la parte frontal, conocida como la trompa, cuidando que mantuviera la forma tradicional de las camionetas guatemaltecas.
+
+Para darle resistencia y un acabado más profesional, aplicamos tres capas de una mezcla de silicón con alcohol, lo que permitió que la estructura endureciera y adquiriera un brillo uniforme. Finalmente, diseñamos y pintamos el exterior inspirándonos en la camioneta Esmeralda, pero añadiendo detalles propios: colocamos el nombre de nuestro equipo en los laterales, nuestras iniciales en la parte trasera y la palabra “Guate” en la trompa, combinando identidad, creatividad y tradición en un solo diseño.
+
+ATRAS
+  <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/a1840ce3-77ad-432d-a796-4bf3ad93be50" />
+
+ADELANTE
+  <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/383544af-565c-4ed4-8350-f98d9446f416" />
+
+  DERECHA
+  <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/abafd7dc-37f8-4dae-8d99-2f4c8a667212" />
+
+  IZQUIERDA
+  <img width="1600" height="1200" alt="image" src="https://github.com/user-attachments/assets/1e824ac2-5edb-43ef-a173-da6ccc3be237" />
