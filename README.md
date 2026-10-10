@@ -7,7 +7,7 @@ https://www.instagram.com/reel/DNkFHWfMFad/?igsh=MWgwencwZzQyNmltYw==
 Cyber-Core
 
 Proverbios 16:3
-“Pon en manos del Señor todas tus obras, y tus proyectos se cumplirán.”
+“Pon en manos del Señor todas tus obra s, y tus proyectos se cumplirán.”
 
 Este repositorio contiene la documentación de la participación de Cyber-Core en la competencia WRO Future Engineers 2025. Nuestro vehículo fue diseñado por un equipo guatemalteco apasionado por la robótica.
 
